@@ -52,37 +52,43 @@ import styles from './Chart.module.css';
 // }
 
 const Chart = ({ dailyData }) => {
-    while (!dailyData.length) {
+	while (!dailyData.length) {
 		return 'Loading....';
-    }
-    console.log(dailyData);
+	}
+	console.log(dailyData);
 
-	let result = dailyData.map(({confirmed})  => confirmed);
-	let deaths = dailyData.map(({deaths})  => deaths);
+	let result = dailyData.map(({ confirmed }) => confirmed);
+	let deaths = dailyData.map(({ deaths }) => deaths);
 	let date = dailyData.map(({ date }) => date);
-	console.log(date)
-	const lineChart = 
+	console.log(result);
+
+	const lineChart = (
 		<Line
 			data={{
-				lables: date,
+				lables: [1,2,3,4,5,6],
 				datasets: [
 					{
-						data: {result},
+						data: [10000,20000,30000,40000,50000,60000],
 						label: 'Infected',
 						borderColor: '#3333ff',
-						fill: true,
+						fill: true
 					},
 					{
-						data: deaths,
+						data: [1000,2000,3000,4000,50000,60000],
 						label: 'Deaths',
 						borderColor: 'red',
 						backgroundColor: 'rgba(225,0,0,0.5)',
-						fill: true,
+						fill: true
 					}
 				]
 			}}
 		/>
-
+	);
+	// ctx = document.getElementById("Chart1").getContext("2d");
+	// var lineChart = new Chart(ctx, {
+	// 	type: 'line',
+	// 	data: data,
+	//   });
 
 	return <div className={styles.container}>{lineChart}</div>;
 };
